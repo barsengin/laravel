@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboarController;
+use App\Http\Controllers\Settings\LangController;
+use App\Http\Controllers\StockController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +22,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' =>false]);
 
 Route::get("/login", "Auth\LoginController@showLoginForm")->name("login");
-Route::post("/login", "Auth\LoginController@login");
+Route::post("/login",[LoginController::class, 'login']);
 Route::get("/logout", "Auth\LoginController@logout")->name("logout");
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/home', 'CompanyController@index')->name('index');
-    Route::get('/', 'CompanyController@index')->name('index');
+    //Route::get('/home', 'CompanyController@index')->name('index');
+    Route::get('/home', [DashboarController::class, 'index'])->name('index');
+    Route::get('/', [DashboarController::class, 'index'])->name('index');
 
-    Route::get("/company", "CompanyController@index")->name('company.index');
+    /*Route::get("/company", "CompanyController@index")->name('company.index');
     Route::get("/company/deleted", "CompanyController@deleted_company")->name('company.deleted');
     Route::get("/company/list", "CompanyController@index");
     Route::get("/company/show/{company_id}", "CompanyController@show")->name('company.show');
@@ -39,9 +45,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get("/employee/show/{employee_id}", "EmployeeController@show")->name('employee.show');
     Route::get("/employee", "EmployeeController@index")->name('employee.index');
     Route::get("/employee/deleted", "EmployeeController@deleted_employee")->name('employee.deleted');
+    Route::get("/employee/list", "EmployeeController@list");
     Route::get("/employee/create", "EmployeeController@create")->name('employee.create');
     Route::post("/employee/create", "EmployeeController@store")->name('employee.store');
     Route::get("/employee/edit/{employee_id}", "EmployeeController@edit")->name('employee.edit');
     Route::post("/employee/update/{employee_id}", "EmployeeController@update")->name('employee.update');
-    Route::get("/employee/destroy/{employee_id}", "EmployeeController@destroy")->name('employee.destroy');
+    Route::get("/employee/destroy/{employee_id}", "EmployeeController@destroy")->name('employee.destroy');*/
+
+
+    Route::get("/stock", [StockController::class, 'index'])->name('stock_index');
+    Route::get("/settings/lang/{lang}", [\App\Http\Controllers\Settings\LanguageController::class, 'update'])->name('stock_index');
+
+
 });

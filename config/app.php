@@ -82,6 +82,18 @@ return [
 
     'locale' => 'tr',
 
+    'locales' => [
+        'en' => 'English',
+        'ar' => 'العربية',
+        'tr' => 'Türkçe',
+        'ru' => 'русский',
+        'fr' => 'Français',
+        'de' => 'Deustch',
+        'it' => 'Italiano',
+        'es' => 'Espanyol',
+        'zh' => '中文',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
