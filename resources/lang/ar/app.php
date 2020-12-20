@@ -1,0 +1,6 @@
+<?php
+
+return [
+
+    'logout' => 'lkhfsl',
+];
