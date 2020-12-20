@@ -154,4 +154,17 @@ class EmployeeController extends Controller
         } else
             abort(404);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list ()
+    {
+        $employees["data"] = Employee::get();
+        $employees['deleted'] = "0";
+
+        return view("employee.list", compact("employees"));
+    }
 }
